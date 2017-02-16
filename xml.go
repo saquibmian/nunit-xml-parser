@@ -8,10 +8,10 @@ import (
 )
 
 const (
-	DateTimeFormat = "2006-01-02T15:04:05"
+	dateTimeFormat = "2006-01-02T15:04:05"
 )
 
-type XmlTestResults struct {
+type xmlTestResults struct {
 	Total        int `xml:"total,attr"`
 	Errors       int `xml:"errors,attr"`
 	Failures     int `xml:"failures,attr"`
@@ -22,11 +22,11 @@ type XmlTestResults struct {
 	DateStartedString string `xml:"date,attr"`
 	TimeStartedString string `xml:"time,attr"`
 
-	TestSuites []XmlTestSuite `xml:"test-suite"`
+	TestSuites []xmlTestSuite `xml:"test-suite"`
 }
 
-func (r *XmlTestResults) TimeStarted() (time.Time, error) {
-	timeStarted, err := time.Parse(DateTimeFormat, r.DateStartedString+"T"+r.TimeStartedString)
+func (r *xmlTestResults) TimeStarted() (time.Time, error) {
+	timeStarted, err := time.Parse(dateTimeFormat, r.DateStartedString+"T"+r.TimeStartedString)
 	if err != nil {
 		return timeStarted, fmt.Errorf("error parsing time: %s", err)
 	}
@@ -34,30 +34,30 @@ func (r *XmlTestResults) TimeStarted() (time.Time, error) {
 	return timeStarted, nil
 }
 
-type XmlTestSuite struct {
+type xmlTestSuite struct {
 	Type   string  `xml:"type,attr"`
 	Name   string  `xml:"name,attr"`
 	Result string  `xml:"result,attr"`
 	Time   float64 `xml:"time,attr"`
 
-	TestSuites []XmlTestSuite `xml:"results>test-suite"`
-	TestCases  []XmlTestCase  `xml:"results>test-case"`
+	TestSuites []xmlTestSuite `xml:"results>test-suite"`
+	TestCases  []xmlTestCase  `xml:"results>test-case"`
 }
 
-type XmlTestCase struct {
+type xmlTestCase struct {
 	Name           string         `xml:"name,attr"`
 	Result         string         `xml:"result,attr"`
 	Time           float64        `xml:"time,attr"`
-	FailureMessage XmlNestedCData `xml:"failure>message"`
-	StackTrace     XmlNestedCData `xml:"failure>stack-trace"`
+	FailureMessage xmlNestedCData `xml:"failure>message"`
+	StackTrace     xmlNestedCData `xml:"failure>stack-trace"`
 }
 
-type XmlNestedCData struct {
+type xmlNestedCData struct {
 	Contents *string `xml:",chardata"`
 }
 
-func readXmlResults(filePath string) (XmlTestResults, error) {
-	results := XmlTestResults{}
+func readXmlResults(filePath string) (xmlTestResults, error) {
+	results := xmlTestResults{}
 
 	contents, err := ioutil.ReadFile(filePath)
 	if err != nil {

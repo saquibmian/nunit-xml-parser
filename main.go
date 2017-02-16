@@ -26,12 +26,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	parsedXml, err := readXmlResults(filePath)
+	parsedXML, err := readXmlResults(filePath)
 	if err != nil {
 		panic(err)
 	}
 
-	tests, err := extractTests(parsedXml)
+	tests, err := extractTests(parsedXML)
 	if err != nil {
 		panic(err)
 	}
@@ -41,7 +41,7 @@ func main() {
 	}
 }
 
-func extractTests(results XmlTestResults) ([]Test, error) {
+func extractTests(results xmlTestResults) ([]Test, error) {
 	timeStarted, err := results.TimeStarted()
 	if err != nil {
 		return nil, err
@@ -63,7 +63,7 @@ func extractTests(results XmlTestResults) ([]Test, error) {
 	return tests, nil
 }
 
-func extractTestsRecursive(suite XmlTestSuite) []Test {
+func extractTestsRecursive(suite xmlTestSuite) []Test {
 	var tests []Test
 
 	for _, test := range suite.TestCases {
