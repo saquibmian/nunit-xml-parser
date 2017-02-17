@@ -7,7 +7,7 @@ A parser for several test results formats. The tool dumps to JSON.
 `-file {file} -format {format}` will output an array of test results defined in the results file of the specified format.
 
 ```
-$ nunit-xml-parser -file random.xml
+$ tests-parser -file -format nunit random.xml
 [
   {
     "Name": "Full.Test.Name",
