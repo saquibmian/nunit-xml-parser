@@ -1,11 +1,11 @@
 package jenkins
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
 
-	"../model"
-	"encoding/json"
+	"github.com/saquibmian/tests-parser/model"
 )
 
 func init() {

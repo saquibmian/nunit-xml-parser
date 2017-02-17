@@ -5,9 +5,9 @@ import (
 	"flag"
 	"os"
 
-	"./model"
-	_ "./nunit"
-	_ "./jenkins"
+	_ "github.com/saquibmian/tests-parser/jenkins"
+	"github.com/saquibmian/tests-parser/model"
+	_ "github.com/saquibmian/tests-parser/nunit"
 )
 
 func main() {

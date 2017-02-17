@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"time"
-	"../model"
+
+	"github.com/saquibmian/tests-parser/model"
 )
 
 func init() {
