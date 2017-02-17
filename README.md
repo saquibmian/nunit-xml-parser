@@ -1,10 +1,10 @@
-# nunit-xml-parser
+# tests-parser
 
-A parser for the NUnit XML test results format. The tool dumps to JSON.
+A parser for several test results formats. The tool dumps to JSON.
 
 # usage
 
-`-file {file}` will output an array of test results defined in the results file.
+`-file {file} -format {format}` will output an array of test results defined in the results file of the specified format.
 
 ```
 $ nunit-xml-parser -file random.xml
@@ -20,3 +20,10 @@ $ nunit-xml-parser -file random.xml
   }
 ]
 ```
+
+# formats
+
+The following formats are supported:
+
+- NUnit XML
+- Jenkins junit plugin
