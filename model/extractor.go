@@ -31,7 +31,7 @@ func RegisterExtractor(name string, extractor Extractor) error {
 	rwMutex.RLock()
 	currentExtractor := extractors[name]
 	rwMutex.RUnlock()
-    
+
 	if currentExtractor != nil {
 		return fmt.Errorf("extract with name '%s' already registered", name)
 	}

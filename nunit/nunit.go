@@ -10,7 +10,10 @@ import (
 )
 
 func init() {
-	model.RegisterExtractor("nunit", nunitExtractor{})
+	err := model.RegisterExtractor("nunit", nunitExtractor{})
+	if err != nil {
+		panic(err)
+	}
 }
 
 const (
@@ -62,7 +65,7 @@ type xmlNestedCData struct {
 	Contents *string `xml:",chardata"`
 }
 
-type nunitExtractor struct { }
+type nunitExtractor struct{}
 
 // ParseXMLResults converts an NUnit XML results file into the test model
 func (e nunitExtractor) Extract(filePath string) ([]model.Test, error) {

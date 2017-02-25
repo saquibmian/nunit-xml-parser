@@ -9,7 +9,10 @@ import (
 )
 
 func init() {
-	model.RegisterExtractor("jenkins", jenkinsExtractor{})
+	err := model.RegisterExtractor("jenkins", jenkinsExtractor{})
+	if err != nil {
+		panic(err)
+	}
 }
 
 const (
